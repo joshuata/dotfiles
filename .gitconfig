@@ -1,0 +1,27 @@
+[user]
+    name = Josh Asplund
+    email = joshasplund@gmail.com
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = vim
+[alias]
+    fpush = push --force-with-lease
+    hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
+[credential]
+    helper = cache
+[push]
+    default = simple
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[transfer]
+    fsckobjects = true
+[status]
+    showUntrackedFiles = all
+[diff]
+    tool = icdiff
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = $(which icdiff) --no-bold --line-numbers $LOCAL $REMOTE
+

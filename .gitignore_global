@@ -1,0 +1,9 @@
+*~
+.DS_Store
+*.plist
+*.sublime-workspace
+.classpath
+.project
+.settings
+*.class
+.vagrant
