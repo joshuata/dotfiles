@@ -26,7 +26,35 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package base16-theme
+  :ensure t)
+
 (use-package evil
+  :ensure t
+  :config
+  (evil-mode t)
+
+  (use-package evil-leader
     :ensure t
     :config
-    (evil-mode t))
+    (global-evil-leader-mode))
+
+  (use-package org-evil
+    :ensure t
+    :config)
+  )
+
+(use-package org
+  :ensure t
+  )
+
+(use-package helm
+    :ensure t
+    :config
+    (helm-mode t)
+    (setq helm-buffers-fuzzy-matching t)
+    (setq helm-autoresize-mode t)
+    (setq helm-buffer-max-length 40)
+    )
+
+(load "~/.emacs.d/lisp/PG/generic/proof-site")
