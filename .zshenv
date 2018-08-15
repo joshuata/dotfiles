@@ -11,6 +11,11 @@ then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
 export EDITOR='vim'
 export VISUAL='vim'
 
@@ -20,14 +25,15 @@ export PATH="$HOME/.local/bin":"$PATH"
 export PATH="$HOME/.cargo/bin":"$PATH"
 source $HOME/.cargo/env
 
-
 # Haskell setup
 export PATH="$HOME/Library/Haskell/bin":"$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 export PATH="$HOME/Library/Python/2.7/bin":"$PATH"
+test -e ${HOME}/.pythonrc && export PYTHONSTARTUP=~/.pythonrc
 
 export SIMPLEHOSTNAME=$(hostname -s)
-if [ -e $HOME/.zsh/$SIMPLEHOSTNAME.zsh ]; then
-  source $HOME/.zsh/$SIMPLEHOSTNAME.zsh;
+if [ -e $HOME/.zsh/env/$SIMPLEHOSTNAME.zsh ]; then
+  source $HOME/.zsh/env/$SIMPLEHOSTNAME.zsh;
 fi
+

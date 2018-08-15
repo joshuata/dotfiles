@@ -11,6 +11,8 @@ fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-test -e ${HOME}/.pythonrc && export PYTHONSTARTUP=~/.pythonrc
+. /Users/joshuata/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
