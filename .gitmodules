@@ -1,6 +1,6 @@
-[submodule "/Users/joshuata/.zprezto"]
-	path = /Users/joshuata/.zprezto
+[submodule ".zprezto"]
+	path = .zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
-[submodule "/Users/joshuata/.tmux/plugins/tpm"]
-	path = /Users/joshuata/.tmux/plugins/tpm
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
