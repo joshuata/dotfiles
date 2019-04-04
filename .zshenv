@@ -25,15 +25,13 @@ export PATH="$HOME/.local/bin":"$PATH"
 export PATH="$HOME/.cargo/bin":"$PATH"
 source $HOME/.cargo/env
 
-# Haskell setup
-export PATH="$HOME/Library/Haskell/bin":"$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
-
+# Python setup
 export PATH="$HOME/Library/Python/2.7/bin":"$PATH"
+export PATH="$HOME/Library/Python/3.7/bin":"$PATH"
 test -e ${HOME}/.pythonrc && export PYTHONSTARTUP=~/.pythonrc
 
-export SIMPLEHOSTNAME=$(hostname -s)
+# Machine-specific setup
+local SIMPLEHOSTNAME=$(hostname -s)
 if [ -e $HOME/.zsh/env/$SIMPLEHOSTNAME.zsh ]; then
   source $HOME/.zsh/env/$SIMPLEHOSTNAME.zsh;
 fi
-

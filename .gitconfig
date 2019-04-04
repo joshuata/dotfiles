@@ -1,9 +1,10 @@
 [user]
-    name = Josh Asplund
-    email = joshasplund@gmail.com
+	name = Josh Asplund
+	email = joshasplund@gmail.com
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
     fpush = push --force-with-lease
     hist = log --pretty=format:\"%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)\" --graph --date=short
@@ -24,4 +25,10 @@
     prompt = false
 [difftool "icdiff"]
     cmd = $(which icdiff) --no-bold --line-numbers $LOCAL $REMOTE
-
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[protocol]
+	version = 2

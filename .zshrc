@@ -6,19 +6,19 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
+    alias vim='nvim'
 fi
 
 if type fzf > /dev/null 2>&1; then
-  alias preview="fzf --preview 'bat --color \"always\" {}'"
+    alias preview="fzf --preview 'bat --color \"always\" {}'"
 fi
 
 if type htop > /dev/null 2>&1; then
-  alias top="sudo htop"
+    alias top="sudo htop"
 fi
 
 if type exa > /dev/null 2>&1; then
-  alias ls="exa"
+    alias ls="exa"
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
@@ -27,8 +27,26 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+if type fasd > /dev/null 2>&1; then
+    function fasd_cd() {
+        if [ $# -le 1 ]; then
+            fasd "$@"
+        else
+            local _fasd_ret="$(fasd -e 'printf %s' "$@")"
+            [ -z "$_fasd_ret" ] && return
+            [ -d "$_fasd_ret" ] && cd "$_fasd_ret" || printf %s\n "$_fasd_ret"
+        fi
+    }
+
+    alias a='fasd -a'
+    alias s='fasd -si'
+    alias sd='fasd -sid'
+    alias sf='fasd -sif'
+    alias d='fasd -d'
+    alias f='fasd -f'
+    alias z='fasd_cd -d'
+    alias zz='fasd_cd -d -i'
+fi
 
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="/Users/joshuata/.local/bin:$PATH"
