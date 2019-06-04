@@ -1,43 +1,27 @@
 fpath+=~/.zfunc
 
-## Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+### Added by Zplugin's installer
+source "${HOME}/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
 
-if type nvim > /dev/null 2>&1; then
+source "${HOME}/.zsh/plugins.zsh"
+
+if (( $+commands[nvim] )); then
     alias vim='nvim'
 fi
 
-if type fzf > /dev/null 2>&1; then
-    alias preview="fzf --preview 'bat --color \"always\" {}'"
-fi
-
-if type htop > /dev/null 2>&1; then
+if (( $+commands[htop] )); then
     alias top="sudo htop"
 fi
 
-if type exa > /dev/null 2>&1; then
+if (( $+commands[exa] )); then
     alias ls="exa"
 fi
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
-. /Users/joshuata/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if type fasd > /dev/null 2>&1; then
-    function fasd_cd() {
-        if [ $# -le 1 ]; then
-            fasd "$@"
-        else
-            local _fasd_ret="$(fasd -e 'printf %s' "$@")"
-            [ -z "$_fasd_ret" ] && return
-            [ -d "$_fasd_ret" ] && cd "$_fasd_ret" || printf %s\n "$_fasd_ret"
-        fi
-    }
-
+if (( $+commands[fasd] )); then
+    alias j='fasd_cd -d'
     alias a='fasd -a'
     alias s='fasd -si'
     alias sd='fasd -sid'
@@ -48,5 +32,8 @@ if type fasd > /dev/null 2>&1; then
     alias zz='fasd_cd -d -i'
 fi
 
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/Users/joshuata/.local/bin:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
+
