@@ -8,6 +8,8 @@ autoload -Uz _zplugin
 
 source "${HOME}/.zsh/plugins.zsh"
 
+alias e="$EDITOR "
+
 if (( $+commands[nvim] )); then
     alias vim='nvim'
 fi
@@ -33,7 +35,4 @@ if (( $+commands[fasd] )); then
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="${HOME}/.local/bin:$PATH"
 
