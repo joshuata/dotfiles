@@ -6,4 +6,6 @@ fi
 export PATH="$HOME/.local/bin":"$PATH"
 
 # Machine-specific setup
-source $HOME/.zsh/env/*.zsh
+for file in $HOME/.zsh/env/*.zsh; do
+    source "$file"
+done

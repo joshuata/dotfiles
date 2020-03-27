@@ -29,20 +29,11 @@ ZSH_CACHE_DIR="$HOME/.zsh/cache"
 zinit ice wait lucid
 zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
 
-if (( !$+commands[fzf] )); then
-    if is-darwin; then
-        zinit ice wait"0" from"gh-r" as"program" bpick"*Darwin_amd64*" lucid
-    else
-        zinit ice wait"0" from"gh-r" as"program" lucid
-    fi
-    zinit light junegunn/fzf-bin
-fi
-
-zinit ice wait"0" lucid
+zinit ice wait has"fzf" lucid
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
 FZFZ_RECENT_DIRS_TOOL=fasd
-zinit ice wait"0" blockf lucid
+zinit ice wait has"fzf" blockf lucid
 zinit load andrewferrier/fzf-z
 
 # iTerm handling
@@ -66,15 +57,11 @@ zinit load zsh-users/zsh-completions
 zinit ice wait"0" lucid blockf
 zinit snippet PZT::modules/completion/init.zsh
 
-if (( $+commands[docker] )); then
-    zinit ice wait"0" as"completion" lucid
-    zinit snippet OMZ::plugins/docker/_docker
-fi
+zinit ice wait has"docker" as"completion" lucid
+zinit snippet OMZ::plugins/docker/_docker
 
-if (( $+commands[docker-compose] )); then
-    zinit ice wait"0" as"completion" lucid
-    zinit snippet OMZ::plugins/docker-compose/_docker-compose
-fi
+zinit ice wait has"docker-compose" as"completion" lucid
+zinit snippet OMZ::plugins/docker-compose/_docker-compose
 
 # Highlighting
 zinit ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
