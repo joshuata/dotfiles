@@ -20,9 +20,13 @@ zinit ice wait lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # ZSH_THEME="sorin"
+# PS1=">"
+# zinit ice lucid
+# zinit snippet OMZ::themes/sunrise.zsh-theme
+
 PS1=">"
 zinit ice lucid
-zinit snippet OMZ::themes/sunrise.zsh-theme
+zinit load agnoster/agnoster-zsh-theme
 
 # Setup fasd and fzf
 ZSH_CACHE_DIR="$HOME/.zsh/cache"
@@ -37,24 +41,24 @@ zinit ice wait has"fzf" blockf lucid
 zinit load andrewferrier/fzf-z
 
 # iTerm handling
-zinit ice wait"0" lucid
+zinit ice wait lucid
 zinit snippet OMZ::plugins/iterm2/iterm2.plugin.zsh
 
 zinit ice lucid
 zinit snippet https://iterm2.com/shell_integration/zsh
 
 # Auto-sourcing
-zinit ice wait"0" blockf lucid
+zinit ice wait blockf lucid
 zinit load Tarrasch/zsh-autoenv
 
-zinit ice wait"0" lucid
+zinit ice wait lucid
 zinit load iboyperson/pipenv-zsh
 
 # Completions
-zinit ice wait"0" lucid blockf
+zinit ice wait lucid blockf
 zinit load zsh-users/zsh-completions
 
-zinit ice wait"0" lucid blockf
+zinit ice wait lucid blockf
 zinit snippet PZT::modules/completion/init.zsh
 
 zinit ice wait has"docker" as"completion" lucid
@@ -64,5 +68,5 @@ zinit ice wait has"docker-compose" as"completion" lucid
 zinit snippet OMZ::plugins/docker-compose/_docker-compose
 
 # Highlighting
-zinit ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
+zinit ice wait atinit"zpcompinit; zpcdreplay" lucid
 zinit load zdharma/fast-syntax-highlighting
