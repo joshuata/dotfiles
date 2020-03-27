@@ -1,43 +1,81 @@
-# Setup prezto modules
+# Setup prezto utility modules
 
-zplugin ice svn wait"0" lucid
-zplugin snippet PZT::modules/utility
+zinit ice lucid
+zinit snippet PZT::modules/helper/init.zsh
 
-zplugin ice svn wait"0" lucid
-zplugin snippet PZT::modules/completion
+zinit ice lucid
+zinit snippet PZT::modules/utility/init.zsh
 
-zplugin ice svn lucid
-zplugin snippet PZT::modules/history
+zinit ice lucid
+zinit snippet PZT::modules/history/init.zsh
 
-zplugin ice wait"0" svn lucid
-zplugin snippet PZT::modules/git
+# Prompt setup
+zinit ice lucid
+zinit snippet OMZ::lib/theme-and-appearance.zsh
 
-zstyle ':prezto:module:prompt' theme 'sorin'
+zinit ice lucid
+zinit snippet OMZ::lib/git.zsh
 
-zplugin load mafredri/zsh-async  # dependency
-zplugin ice svn silent
-zplugin snippet PZT::modules/prompt
+zinit ice wait lucid
+zinit snippet OMZ::plugins/git/git.plugin.zsh
 
-# Setup fasd
-if (( $+commands[fasd] )); then
-    zplugin ice svn wait lucid
-    zplugin snippet PZT::modules/fasd
+# ZSH_THEME="sorin"
+PS1=">"
+zinit ice lucid
+zinit snippet OMZ::themes/sunrise.zsh-theme
+
+# Setup fasd and fzf
+ZSH_CACHE_DIR="$HOME/.zsh/cache"
+zinit ice wait lucid
+zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
+
+if (( !$+commands[fzf] )); then
+    if is-darwin; then
+        zinit ice wait"0" from"gh-r" as"program" bpick"*Darwin_amd64*" lucid
+    else
+        zinit ice wait"0" from"gh-r" as"program" lucid
+    fi
+    zinit light junegunn/fzf-bin
 fi
 
-# fzf setup
-zplugin ice wait"0" from"gh-r" as"program" lucid
-zplugin load junegunn/fzf-bin
+zinit ice wait"0" lucid
+zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
-zplugin ice svn wait"0" lucid
-zplugin snippet OMZ::plugins/fzf
+FZFZ_RECENT_DIRS_TOOL=fasd
+zinit ice wait"0" blockf lucid
+zinit load andrewferrier/fzf-z
+
+# iTerm handling
+zinit ice wait"0" lucid
+zinit snippet OMZ::plugins/iterm2/iterm2.plugin.zsh
+
+zinit ice lucid
+zinit snippet https://iterm2.com/shell_integration/zsh
 
 # Auto-sourcing
-zplugin ice wait"0" blockf lucid
-zplugin load Tarrasch/zsh-autoenv
+zinit ice wait"0" blockf lucid
+zinit load Tarrasch/zsh-autoenv
 
-zplugin ice svn wait"0" lucid
-zplugin load iboyperson/pipenv-zsh
+zinit ice wait"0" lucid
+zinit load iboyperson/pipenv-zsh
+
+# Completions
+zinit ice wait"0" lucid blockf
+zinit load zsh-users/zsh-completions
+
+zinit ice wait"0" lucid blockf
+zinit snippet PZT::modules/completion/init.zsh
+
+if (( $+commands[docker] )); then
+    zinit ice wait"0" as"completion" lucid
+    zinit snippet OMZ::plugins/docker/_docker
+fi
+
+if (( $+commands[docker-compose] )); then
+    zinit ice wait"0" as"completion" lucid
+    zinit snippet OMZ::plugins/docker-compose/_docker-compose
+fi
 
 # Highlighting
-zplugin ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
-zplugin load zdharma/fast-syntax-highlighting
+zinit ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
+zinit load zdharma/fast-syntax-highlighting

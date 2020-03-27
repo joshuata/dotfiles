@@ -1,9 +1,9 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule ".zplugin/bin"]
-	path = .zplugin/bin
-	url = https://github.com/zdharma/zplugin.git
 [submodule ".local/diff-so-fancy"]
 	path = .local/diff-so-fancy
 	url = https://github.com/so-fancy/diff-so-fancy.git
+[submodule ".zinit/bin"]
+	path = .zinit/bin
+	url = https://github.com/zdharma/zinit.git

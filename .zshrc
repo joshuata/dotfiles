@@ -1,14 +1,22 @@
 fpath+=~/.zfunc
 
-### Added by Zplugin's installer
-source "${HOME}/.zplugin/bin/zplugin.zsh"
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin's installer chunk
+### Set zsh options
+setopt auto_cd
+setopt promptsubst
 
+### Initialize zinit
+# Load
+source "${HOME}/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load plugins
 source "${HOME}/.zsh/plugins.zsh"
+### End of block
+
 
 alias e="$EDITOR "
+
 
 if (( $+commands[nvim] )); then
     alias vim='nvim'
@@ -33,6 +41,4 @@ if (( $+commands[fasd] )); then
     alias z='fasd_cd -d'
     alias zz='fasd_cd -d -i'
 fi
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
