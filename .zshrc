@@ -14,6 +14,7 @@ autoload -Uz _zinit
 source "${HOME}/.zsh/plugins.zsh"
 ### End of block
 
+DEFAULT_USER=joshuata
 
 alias e="$EDITOR "
 
