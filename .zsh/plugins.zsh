@@ -9,24 +9,8 @@ zinit snippet PZT::modules/utility/init.zsh
 zinit ice lucid
 zinit snippet PZT::modules/history/init.zsh
 
-# Prompt setup
-zinit ice lucid
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-
-zinit ice lucid
-zinit snippet OMZ::lib/git.zsh
-
-zinit ice wait lucid
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-
-# ZSH_THEME="sorin"
-# PS1=">"
-# zinit ice lucid
-# zinit snippet OMZ::themes/sunrise.zsh-theme
-
-PS1=">"
-zinit ice lucid
-zinit load agnoster/agnoster-zsh-theme
+zinit ice depth=1
+zinit load romkatv/powerlevel10k
 
 # Setup fasd and fzf
 ZSH_CACHE_DIR="$HOME/.zsh/cache"
@@ -50,9 +34,6 @@ zinit snippet https://iterm2.com/shell_integration/zsh
 # Auto-sourcing
 zinit ice wait blockf lucid
 zinit load Tarrasch/zsh-autoenv
-
-zinit ice wait lucid
-zinit load iboyperson/pipenv-zsh
 
 # Completions
 zinit ice wait lucid blockf
