@@ -1,0 +1,28 @@
+[user]
+    name = Josh Asplund
+    email = joshasplund@gmail.com
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[alias]
+    fpush = push --force-with-lease
+[credential]
+	helper = osxkeychain
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+[push]
+    default = simple
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[transfer]
+    fsckobjects = true
+[status]
+    showUntrackedFiles = all
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
