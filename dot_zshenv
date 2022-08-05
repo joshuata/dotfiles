@@ -1,6 +1,11 @@
-# Ensure that a non-login, non-interactive shell has a defined environment.
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprofile"
-fi
+# export PATH="$HOME/.local/bin":"$PATH"
+export DEFAULT_USER='joshuata'
+export ZSH_CUSTOM="${HOME}/.zsh"
 
-export PATH="$HOME/.local/bin":"$PATH"
+path=(
+  $HOME/.local/bin
+  /usr/local/{bin,sbin}
+  $path
+)
+export PATH
+# TODO: Path is backwards?

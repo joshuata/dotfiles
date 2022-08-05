@@ -1,9 +1,8 @@
-[".oh-my-zsh"]
+[".zi/bin"]
 type = "archive"
-url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-# exact = true
+url = "https://github.com/z-shell/zi/archive/master.tar.gz"
+exact = true
 stripComponents = 1
-refreshPeriod = "168h"
 
 [".tmux/plugins/tpm"]
 type = "archive"
