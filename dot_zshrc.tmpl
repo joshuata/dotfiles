@@ -16,6 +16,9 @@ export ZSH_CUSTOM="${HOME}/.zsh"
 
 source "${ZSH_CUSTOM}/plugins.zsh"
 source "${ZSH_CUSTOM}/aliases.zsh"
+{{- if contains "WSL2" .chezmoi.kernel.osrelease }}
+source "${ZSH_CUSTOM}/wsl2_config.zsh"
+{{- end }}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
