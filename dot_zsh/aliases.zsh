@@ -2,10 +2,6 @@ alias e="$EDITOR "
 
 alias -s git="git clone"
 
-if (( $+commands[nvim] )); then
-    alias vim='nvim'
-fi
-
 if (( $+commands[htop] )); then
     alias top="sudo htop"
 fi
