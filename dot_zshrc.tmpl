@@ -16,7 +16,7 @@ export ZSH_CUSTOM="${HOME}/.zsh"
 
 source "${ZSH_CUSTOM}/plugins.zsh"
 source "${ZSH_CUSTOM}/aliases.zsh"
-{{- if contains "WSL2" .chezmoi.kernel.osrelease }}
+{{- if and .chezmoi.kernel .chezmoi.kernel.osrelease (contains "WSL2" .chezmoi.kernel.osrelease) }}
 source "${ZSH_CUSTOM}/wsl2_config.zsh"
 {{- end }}
 
