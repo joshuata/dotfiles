@@ -21,9 +21,3 @@ if (( $+commands[fasd] )); then
     alias z='fasd_cd -d'
     alias zz='fasd_cd -d -i'
 fi
-
-if (( $+commands[op] )); then
-    if (( $+commands[aws] )); then
-        alias aws='op run --env-file=$HOME/.config/op/aws-env -- aws'
-    fi
-fi
