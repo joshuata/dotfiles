@@ -23,5 +23,3 @@
     required = true
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-[credential "https://github-dev.cs.illinois.edu"]
-	provider = github
