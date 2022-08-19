@@ -1,3 +1,5 @@
+zi light z-shell/z-a-patch-dl
+
 # Setup prezto utility modules
 
 zi ice lucid
@@ -16,6 +18,8 @@ zi load romkatv/powerlevel10k
 ZSH_CACHE_DIR="$HOME/.zsh/cache"
 zi ice wait lucid
 zi snippet OMZ::plugins/fasd/fasd.plugin.zsh
+
+zi pack"bgn-binary" for fzf
 
 zi ice wait has"fzf" lucid
 zi snippet OMZ::plugins/fzf/fzf.plugin.zsh
@@ -51,8 +55,8 @@ zi snippet OMZ::plugins/docker/_docker
 zi ice wait has"docker-compose" as"completion" lucid
 zi snippet OMZ::plugins/docker-compose/_docker-compose
 
-# zinit ice wait has"fzf" lucid
-# zinit snippet OMZ::plugins/npx/npx.plugin.zsh
+zi ice wait has"op" lucid
+zi snippet OMZ::plugins/1password/1password.plugin.zsh
 
 # Highlighting
 zi ice wait atinit"zpcompinit; zpcdreplay" lucid
