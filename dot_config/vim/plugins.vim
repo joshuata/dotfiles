@@ -5,7 +5,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'sgur/vim-editorconfig'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Tmux interaction
 Plug 'christoomey/vim-tmux-navigator'

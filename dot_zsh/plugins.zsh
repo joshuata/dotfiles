@@ -20,7 +20,14 @@ ZSH_CACHE_DIR="$HOME/.zsh/cache"
 zi ice wait lucid
 zi snippet OMZP::fasd
 
-zi pack"bgn-binary" for fzf
+zi ice from"gh-r" as"program"
+zi load junegunn/fzf-bin
+
+export FZF_BASE="$HOME/.zi/plugins/junegunn---fzf-bin/"
+export DISABLE_FZF_KEY_BINDINGS="true"
+
+zi ice wait lucid
+zi load chitoku-k/fzf-zsh-completions
 
 zi ice wait has"fzf" lucid
 zi snippet OMZP::fzf
