@@ -1,3 +1,4 @@
+zi light z-shell/z-a-bin-gem-node
 zi light z-shell/z-a-patch-dl
 
 # Setup prezto utility modules
