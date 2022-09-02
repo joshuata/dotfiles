@@ -40,8 +40,11 @@ zi ice lucid
 zi snippet https://iterm2.com/shell_integration/zsh
 
 # Auto-sourcing
-zi ice wait blockf lucid
-zi load Tarrasch/zsh-autoenv
+zi ice lucid
+zi from"gh-r" as"program" mv"direnv* -> direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+  pick"direnv" src="zhook.zsh" for \
+    direnv/direnv
 
 zi ice wait lucid
 zi load darvid/zsh-poetry
