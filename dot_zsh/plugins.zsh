@@ -72,3 +72,5 @@ zi snippet OMZP::1password
 # Highlighting
 zi ice wait atinit"zpcompinit; zpcdreplay" lucid
 zi load zdharma/fast-syntax-highlighting
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
