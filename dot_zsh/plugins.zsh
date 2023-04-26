@@ -53,8 +53,11 @@ zi from"gh-r" as"program" mv"direnv* -> direnv" \
   pick"direnv" src="zhook.zsh" for \
     direnv/direnv
 
-zi ice wait lucid
+zi ice wait has"poetry" lucid
 zi load darvid/zsh-poetry
+
+zi ice wait lucid
+zi snippet OMZP::pyenv
 
 # Completions
 zi ice wait lucid blockf
