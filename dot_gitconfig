@@ -1,28 +1,29 @@
 [user]
-    name = Josh Asplund
-    email = joshasplund@gmail.com
+	name = Josh Asplund
+	email = joshasplund@gmail.com
 [core]
-    pager = delta
+	pager = delta
+	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [alias]
-    fpush = push --force-with-lease
+	fpush = push --force-with-lease
 [push]
-    default = simple
+	default = simple
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 [transfer]
-    fsckobjects = true
+	fsckobjects = true
 [status]
-    showUntrackedFiles = all
+	showUntrackedFiles = all
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [credential]
