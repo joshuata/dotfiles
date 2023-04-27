@@ -3,6 +3,8 @@
     email = joshasplund@gmail.com
 [core]
     pager = delta
+[init]
+	defaultBranch = main
 [interactive]
     diffFilter = delta --color-only
 [alias]
@@ -24,4 +26,5 @@
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [credential]
-	helper = manager-core
+	helper = git-credential-manager-core
+	helper = /usr/local/share/gcm-core/git-credential-manager
