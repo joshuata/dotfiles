@@ -36,6 +36,9 @@ FZFZ_RECENT_DIRS_TOOL=fasd
 zi ice wait has"fzf" blockf lucid
 zi load andrewferrier/fzf-z
 
+zi ice lucid wait'0'
+zi light joshskidmore/zsh-fzf-history-search
+
 zi ice wait has"aws" lucid
 zi snippet OMZP::aws
 
@@ -58,6 +61,7 @@ zi load darvid/zsh-poetry
 
 zi ice wait lucid
 zi snippet OMZP::pyenv
+ZSH_PYENV_QUIET=true
 
 # Completions
 zi ice wait lucid blockf
@@ -69,8 +73,14 @@ zi snippet PZTM::completion
 zi ice wait has"docker" lucid
 zi snippet OMZP::docker
 
+zi ice wait has"kubectl" lucid
+zi snippet OMZP::kubectl
+
 zi ice wait has"op" lucid
 zi snippet OMZP::1password
+
+zi ice from"gh" as"program" pick"bin/mdsh"
+zi load bashup/mdsh
 
 # Highlighting
 zi ice wait atinit"zpcompinit; zpcdreplay" lucid

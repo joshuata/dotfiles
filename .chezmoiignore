@@ -1,7 +1,5 @@
 bootstrap.sh
 README.md
-{{ if (or (not (lookPath "op")) (not (lookPath "aws"))) }}
-.aws/config
-.aws/credentials
-.aws/
+{{- if not (and .chezmoi.kernel .chezmoi.kernel.osrelease (contains "WSL2" .chezmoi.kernel.osrelease)) }}
+.zsh/99_wsl2_config.zsh
 {{ end }}

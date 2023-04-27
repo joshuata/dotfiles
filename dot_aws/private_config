@@ -1,5 +1,0 @@
-[default]
-
-[csid]
-region = us-east-2
-credential_process = aws-credential-1password "Development" "AWS - CSID"  "access_key_id" "secret_access_key"
