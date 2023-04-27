@@ -1,4 +1,4 @@
-{{ if lookPath "conda" }}
+{{ if lookPath "conda" -}}
 # >>> conda initialize >>>
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -12,12 +12,24 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-{{ end }}
+{{- else -}}
+# Conda not installed
+{{- end }}
 
-{{ if stat (joinPath .chezmoi.homeDir "Library/Application Support/JetBrains/Toolbox/scripts") }}
+{{ if (stat (joinPath .chezmoi.homeDir "Library/Application Support/JetBrains/Toolbox/scripts")) -}}
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-{{ end }}
+{{- else -}}
+# Jetbrains toolbox not installed
+{{- end }}
 
-{{ if stat (joinPath .chezmoi.homeDir ".krew/bin") }}
+{{ if stat (joinPath .chezmoi.homeDir ".krew/bin") -}}
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-{{ end }}
+{{- else -}}
+# Krew not installed
+{{- end }}
+
+{{ if stat (joinPath .chezmoi.homeDir ".config/op/plugins.sh") -}}
+source "$HOME/.config/op/plugins.sh" >> ~/.zshrc
+{{- else -}}
+# 1Password CLI not installed
+{{- end }}
