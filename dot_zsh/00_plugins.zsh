@@ -17,24 +17,13 @@ zi load romkatv/powerlevel10k
 
 # Setup fasd and fzf
 ZSH_CACHE_DIR="$HOME/.zsh/cache"
-zi ice wait lucid
-zi snippet OMZP::fasd
 
-zi ice from"gh-r" as"program"
-zi load junegunn/fzf-bin
-
-export FZF_BASE="$HOME/.zi/plugins/junegunn---fzf-bin/"
-export DISABLE_FZF_KEY_BINDINGS="true"
-
+zi pack"default+keys" for fzf
 zi ice wait lucid
 zi load chitoku-k/fzf-zsh-completions
 
-zi ice wait has"fzf" lucid
-zi snippet OMZP::fzf
-
-FZFZ_RECENT_DIRS_TOOL=fasd
-zi ice wait has"fzf" blockf lucid
-zi load andrewferrier/fzf-z
+zi has'zoxide' wait lucid for atload="function z() { __zoxide_z \"\$@\" }" \
+  z-shell/zsh-zoxide
 
 zi ice lucid wait'0'
 zi light joshskidmore/zsh-fzf-history-search
@@ -64,14 +53,13 @@ zi snippet OMZP::pyenv
 ZSH_PYENV_QUIET=true
 
 # Completions
+zi wait pack atload=+"zicompinit; zicdreplay" for brew-completions
+
 zi ice wait lucid blockf
 zi load zsh-users/zsh-completions
 
 zi ice wait lucid blockf
 zi snippet PZTM::completion
-
-zi ice wait has"docker" lucid
-zi snippet OMZP::docker
 
 zi ice wait has"kubectl" lucid
 zi snippet OMZP::kubectl
@@ -81,6 +69,9 @@ zi snippet OMZP::1password
 
 zi ice from"gh" as"program" pick"bin/mdsh"
 zi load bashup/mdsh
+
+zi ice lucid nocompile
+zi load MenkeTechnologies/zsh-cargo-completion
 
 # Highlighting
 zi ice wait atinit"zpcompinit; zpcdreplay" lucid
