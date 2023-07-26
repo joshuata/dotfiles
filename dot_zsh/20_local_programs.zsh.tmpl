@@ -28,8 +28,8 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Krew not installed
 {{- end }}
 
-{{ if stat (joinPath .chezmoi.homeDir ".config/op/plugins.sh") -}}
-source "$HOME/.config/op/plugins.sh" >> ~/.zshrc
+{{ if (and (lookPath "op") (stat (joinPath .chezmoi.homeDir ".config/op/plugins.sh"))) -}}
+source "$HOME/.op/plugins.sh" >> ~/.zshrc
 {{- else -}}
 # 1Password CLI not installed
 {{- end }}
