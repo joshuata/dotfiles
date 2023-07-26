@@ -18,7 +18,7 @@ zi load romkatv/powerlevel10k
 # Setup fasd and fzf
 ZSH_CACHE_DIR="$HOME/.zsh/cache"
 
-zi pack"default+keys" for fzf
+zi pack"binary+keys" for fzf
 zi ice wait lucid
 zi load chitoku-k/fzf-zsh-completions
 
