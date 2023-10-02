@@ -29,8 +29,7 @@
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [credential]
-	helper = git-credential-manager-core
-	helper = /usr/local/share/gcm-core/git-credential-manager
+	helper = git-credential-manager
 {{ if and (eq .chezmoi.os "darwin") (lookPath "op") -}}
 [user]
 	signingkey = {{ onepasswordRead "op://Private/id_ed25519/Public key" }}
