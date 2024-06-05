@@ -8,4 +8,5 @@ path=(
   $path
 )
 export PATH
-# TODO: Path is backwards?
+
+[[ ! -f "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"

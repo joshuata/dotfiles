@@ -49,8 +49,10 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
-{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) -}}
+{{ if (and (lookPath "brew") (stat "/opt/homebrew/bin/brew")) -}}
 eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else if (eq .chezmoi.os "darwin") -}}
+{{ else if (and (lookPath "brew") (stat "/usr/local/Homebrew/bin/brew")) -}}
 eval "$(/usr/local/Homebrew/bin/brew shellenv)"
 {{ end }}
+
+[[ ! -f "$HOME/.orbstack/shell/init.zsh" ]] || source "$HOME/.orbstack/shell/init.zsh"

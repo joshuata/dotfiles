@@ -10,14 +10,9 @@ if (( $+commands[exa] )); then
     alias ls="exa"
 fi
 
-if (( $+commands[fasd] )); then
-    alias j='fasd_cd -d'
-    alias a='fasd -a'
-    alias s='fasd -si'
-    alias sd='fasd -sid'
-    alias sf='fasd -sif'
-    alias d='fasd -d'
-    alias f='fasd -f'
-    alias z='fasd_cd -d'
-    alias zz='fasd_cd -d -i'
+if (( $+commands[zoxide] )); then
+    alias cd="x"
+    alias cdi="xi"
 fi
+
+alias tsh="TELEPORT_ADD_KEYS_TO_AGENT=no tsh"

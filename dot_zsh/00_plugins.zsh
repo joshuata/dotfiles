@@ -53,13 +53,12 @@ zi snippet OMZP::pyenv
 ZSH_PYENV_QUIET=true
 
 # Completions
-zi wait pack atload=+"zicompinit; zicdreplay" for brew-completions
+zi light felipec/git-completion
+
+zi wait has"brew" pack atload=+"zicompinit; zicdreplay" for brew-completions
 
 zi ice wait lucid blockf
 zi load zsh-users/zsh-completions
-
-zi ice wait lucid blockf
-zi snippet PZTM::completion
 
 zi ice wait has"kubectl" lucid
 zi snippet OMZP::kubectl
@@ -70,11 +69,19 @@ zi snippet OMZP::1password
 zi ice from"gh" as"program" pick"bin/mdsh"
 zi load bashup/mdsh
 
-zi ice lucid nocompile
+zi ice has"cargo" lucid nocompile
 zi load MenkeTechnologies/zsh-cargo-completion
 
 # Highlighting
-zi ice wait atinit"zpcompinit; zpcdreplay" lucid
-zi load zdharma/fast-syntax-highlighting
+zi ice as'null' sbin'bin/*'
+zi light z-shell/zsh-diff-so-fancy
+
+zi wait lucid for \
+  atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    z-shell/F-Sy-H \
+  blockf \
+    zsh-users/zsh-completions \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"

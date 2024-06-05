@@ -22,9 +22,9 @@ else:
     old_host_lines = []
 
 with tmp_hosts_file.open("w") as outfile:
+    outfile.writelines(new_host_lines)
     for line in old_host_lines:
         if not line.startswith("github.com"):
             outfile.write(line)
-    outfile.writelines(new_host_lines)
 
 tmp_hosts_file.rename(hosts_file)

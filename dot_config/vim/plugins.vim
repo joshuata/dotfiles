@@ -16,6 +16,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'altercation/vim-colors-solarized'
 Plug 'iCyMind/NeoSolarized'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " Language Specific
 Plug 'cespare/vim-toml'

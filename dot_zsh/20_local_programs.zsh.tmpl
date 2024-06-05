@@ -1,4 +1,7 @@
 {{ if lookPath "conda" -}}
+
+## Get base directory from $(which conda)
+
 # >>> conda initialize >>>
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -32,4 +35,10 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source "$HOME/.op/plugins.sh" >> ~/.zshrc
 {{- else -}}
 # 1Password CLI not installed
+{{- end }}
+
+{{ if stat (joinPath .chezmoi.homeDir ".dotnet/tools") -}}
+export PATH="$PATH:$HOME/.dotnet/tools"
+{{- else -}}
+# dotnet not installed
 {{- end }}

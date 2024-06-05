@@ -4,4 +4,3 @@ set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set gcr=a:blinkon0              "Disable cursor blink
 set background=dark             "Enable dark mode
-colorscheme solarized           "Enable solarized theme
