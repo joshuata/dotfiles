@@ -76,6 +76,8 @@ zi load MenkeTechnologies/zsh-cargo-completion
 zi ice as'null' sbin'bin/*'
 zi light z-shell/zsh-diff-so-fancy
 
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 zi wait lucid for \
   atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     z-shell/F-Sy-H \
@@ -83,5 +85,3 @@ zi wait lucid for \
     zsh-users/zsh-completions \
   atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
-
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
