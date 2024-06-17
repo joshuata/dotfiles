@@ -3,7 +3,6 @@
 from urllib.request import urlopen
 import json
 from pathlib import Path
-import os
 
 response = urlopen('https://api.github.com/meta')
 

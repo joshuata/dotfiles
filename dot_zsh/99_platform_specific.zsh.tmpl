@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "darwin" }}
+source "${ZSH_CUSTOM}/platform_specific/macos.zsh"
+{{ else if eq .chezmoi.os "windows"}}
+source "${ZSH_CUSTOM}/platform_specific/windows.zsh"
+{{ end }}
