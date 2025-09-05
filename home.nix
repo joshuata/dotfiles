@@ -82,6 +82,13 @@
         bind C-l send-keys 'C-l'
       '';
     };
+    mise = {
+      enable = true;
+      settings = {
+        experimental = true;
+        legacy_version_file_disable_tools = [ "terraform" ];
+      };
+    };
     neovim = {
       enable = true;
       defaultEditor = true;
