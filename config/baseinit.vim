@@ -14,10 +14,6 @@ set autoread                    "Reload files changed outside vim
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-" =============== Vim-Plug Initialization ===============
-
-runtime plugins.vim
-
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
@@ -54,16 +50,6 @@ set nofoldenable        "dont fold by default
 
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Scrolling ========================
 
@@ -71,7 +57,13 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-" ================ Custom Settings ========================
+let mapleader = "\<space>"
+let statedir = expand("$XDG_STATE_HOME") .. "/vim"
 
-runtime ui.vim
-runtime keymap.vim
+if !isdirectory(statedir)
+    call mkdir(statedir, "p")
+endif
+let g:yankring_history_dir = statedir
+nnoremap <Leader>p :FZF<CR>
+
+colorscheme catppuccin-macchiato

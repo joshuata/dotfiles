@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows
+# File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
+# Created by https://www.toptal.com/developers/gitignore/api/linux,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos
 
 ### Linux ###
 *~
@@ -49,33 +50,8 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
+# End of https://www.toptal.com/developers/gitignore/api/linux,macos
 
-# Dump file
-*.stackdump
+# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows
-
-*.code-workspace
-
+.vscode/
