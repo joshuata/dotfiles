@@ -22,22 +22,6 @@
   ];
 
   programs = {
-    git = {
-      enable = true;
-      delta.enable = true;
-      userEmail = "joshasplund@gmail.com";
-      userName = "Josh Asplund";
-      aliases = {
-        fpush = "push --force-with-lease";
-      };
-      extraConfig = {
-        init.defaultBranch = "main";
-        push.default = "simple";
-        pull.rebase = "true";
-        merge.conflictStyle = "zdiff3";
-        status.showUntrackedFiles = "all";
-      };
-    };
     zoxide.enable = true;
     starship = {
       enable = true;
