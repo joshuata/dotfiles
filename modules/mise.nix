@@ -10,7 +10,6 @@
         };
         tools.fnox = "latest";
         tools.hk = "latest";
-        plugins.fnox-env = "https://github.com/jdx/mise-env-fnox";
       };
     };
     git = {

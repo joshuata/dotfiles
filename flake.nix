@@ -28,25 +28,32 @@
       ...
     }:
     {
-      devShells.aarch64-darwin.default =
-        let
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        in
-        pkgs.mkShellNoCC {
-          packages = [
-            (pkgs.writeShellApplication {
-              name = "mkbrewfile";
-              runtimeEnv = {
-                HOMEBREW_NO_AUTO_UPDATE = "1";
-                HOMEBREW_BUNDLE_NO_DESCRIBE = "1";
-                HOMEBREW_BUNDLE_DUMP_NO_VSCODE = "1";
-                HOMEBREW_BUNDLE_DUMP_NO_UV = "1";
-              };
-              text = ''
-                brew bundle dump -f --file "$(git rev-parse --show-toplevel)/hosts/mbp/brew/brewfile.rb"
-              '';
-            })
-          ];
+      # Empty default shell on every platform; override per-platform below.
+      devShells =
+        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: {
+          default = nixpkgs.legacyPackages.${system}.mkShellNoCC { };
+        })
+        // {
+          aarch64-darwin.default =
+            let
+              pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            in
+            pkgs.mkShellNoCC {
+              packages = [
+                (pkgs.writeShellApplication {
+                  name = "mkbrewfile";
+                  runtimeEnv = {
+                    HOMEBREW_NO_AUTO_UPDATE = "1";
+                    HOMEBREW_BUNDLE_NO_DESCRIBE = "1";
+                    HOMEBREW_BUNDLE_DUMP_NO_VSCODE = "1";
+                    HOMEBREW_BUNDLE_DUMP_NO_UV = "1";
+                  };
+                  text = ''
+                    brew bundle dump -f --file "$(git rev-parse --show-toplevel)/hosts/mbp/brew/brewfile.rb"
+                  '';
+                })
+              ];
+            };
         };
 
       # Build darwin flake using:
@@ -82,6 +89,16 @@
           }
         ];
         specialArgs = { inherit onepassword-shell-plugins; };
+      };
+      homeConfigurations."joshuata" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./hosts/adolin ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
     };
 }

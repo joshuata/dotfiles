@@ -24,7 +24,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -75,3 +76,5 @@ Temporary Items
 keys/
 nixos.qcow2
 CLAUDE.md
+.vscode/settings.json
+

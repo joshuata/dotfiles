@@ -1,40 +1,16 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./orbstack
-  ];
-
   home.packages = with pkgs; [
     awscli2
     ripgrep
     bat
-    nil
-    nixfmt
-    niv
-    nixd
     git-credential-manager
     tsx
     gettext
   ];
 
   programs = {
-    mise = {
-      enable = true;
-      globalConfig = {
-        settings = {
-          experimental = true;
-          legacy_version_file_disable_tools = [ "terraform" ];
-        };
-        tools.fnox = "latest";
-        tools.hk = "latest";
-        plugins.fnox-env = "https://github.com/jdx/mise-env-fnox";
-      };
-    };
-    orbstack = {
-      enable = true;
-      package = pkgs.orbstack_loc;
-    };
     direnv =
       let
         _1password_plugin = builtins.fetchGit {
