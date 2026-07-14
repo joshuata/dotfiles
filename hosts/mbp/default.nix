@@ -1,8 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
-  home-manager,
   ...
 }:
 {
@@ -14,6 +11,7 @@
     ../../modules/mise.nix
     ../../modules/vim
     ../../modules/git
+    ../../modules/orbstack
     # ../../modules/iterm2.nix
     # ../../modules/macos.nix
     ../../modules/nixdev.nix
@@ -23,5 +21,12 @@
     ../../modules/postgresql.nix
     # ../../modules/ghostty.nix
   ];
+
+  programs = {
+    orbstack = {
+      enable = true;
+      package = pkgs.orbstack_loc;
+    };
+  };
 
 }
