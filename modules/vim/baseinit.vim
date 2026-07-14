@@ -58,12 +58,7 @@ set sidescrolloff=15
 set sidescroll=1
 
 let mapleader = "\<space>"
-let statedir = expand("$XDG_STATE_HOME") .. "/vim"
-
-if !isdirectory(statedir)
-    call mkdir(statedir, "p")
-endif
-let g:yankring_history_dir = statedir
+let g:yankring_history_dir = expand("$XDG_STATE_HOME") .. "/vim"
 nnoremap <Leader>p :FZF<CR>
 
-colorscheme catppuccin-macchiato
+colorscheme catppuccin_macchiato
