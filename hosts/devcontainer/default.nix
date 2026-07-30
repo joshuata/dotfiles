@@ -26,4 +26,10 @@
   home.sessionVariables = {
     EDITOR = "code";
   };
+
+  programs = {
+    vim = {
+      defaultEditor = false;
+    };
+  };
 }

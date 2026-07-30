@@ -100,15 +100,20 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
-      homeConfigurations."vscode" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
+      # Per-system home configurations. `home-manager switch --flake .#vscode`
+      # resolves via legacyPackages.<currentSystem>, so the same command works
+      # on both x86_64-linux and aarch64-linux.
+      legacyPackages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system: {
+        homeConfigurations."vscode" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./hosts/adolin ];
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [ ./hosts/adolin ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+        };
+      });
     };
 }
