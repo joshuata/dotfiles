@@ -100,5 +100,15 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
+      homeConfigurations."vscode" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./hosts/adolin ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
     };
 }

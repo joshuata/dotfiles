@@ -59,6 +59,5 @@ set sidescroll=1
 
 let mapleader = "\<space>"
 let g:yankring_history_dir = expand("$XDG_STATE_HOME") .. "/vim"
-nnoremap <Leader>p :FZF<CR>
 
 colorscheme catppuccin_macchiato

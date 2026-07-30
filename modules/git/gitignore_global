@@ -81,3 +81,5 @@ $RECYCLE.BIN/
 *.code-workspace
 .direnv/
 .op/
+**/fnox.local.toml
+**/mise.local.toml

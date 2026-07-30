@@ -19,10 +19,6 @@
         inline_height = 20;
       };
     };
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
     zsh = {
       enable = true;
       enableCompletion = true;
