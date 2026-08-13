@@ -20,8 +20,6 @@
     mosh
     ripgrep
     step-cli
-    teleport
-    devenv
     esptool
     rustup
     ansi2html
@@ -30,7 +28,6 @@
     pnpm
     rsync
     cargo-generate
-    terraform
     zstd
   ];
 
