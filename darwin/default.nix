@@ -46,20 +46,25 @@
 
   nix.package = pkgs.lixPackageSets.latest.lix;
 
-  # nix.linux-builder = {
-  #   enable = true;
-  #   ephemeral = true;
-  #   maxJobs = 4;
-  #   config = {
-  #     virtualisation = {
-  #       darwin-builder = {
-  #         diskSize = 40 * 1024;
-  #         memorySize = 8 * 1024;
-  #       };
-  #       cores = 6;
-  #     };
-  #   };
-  # };
+  nix.linux-builder = {
+    enable = true;
+    ephemeral = true;
+    maxJobs = 4;
+    package = pkgs.darwin.linux-builder-vz;
+    systems = [
+      "aarch64-linux"
+      "x86_64-linux"
+    ];
+    config = {
+      virtualisation = {
+        darwin-builder = {
+          diskSize = 40 * 1024;
+          memorySize = 8 * 1024;
+        };
+        cores = 6;
+      };
+    };
+  };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
