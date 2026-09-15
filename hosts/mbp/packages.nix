@@ -13,6 +13,7 @@
     ddrescue
     jdk
     python3
+    python3Packages.setuptools
     delta
     kubernetes-helm
     jq

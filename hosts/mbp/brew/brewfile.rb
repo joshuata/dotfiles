@@ -1,4 +1,13 @@
 tap "1password/tap", trusted: true
+brew "ccache"
+brew "clang-format"
+brew "coreutils"
+brew "dos2unix"
+brew "gh"
+brew "git"
+brew "hidapi"
+brew "libusb"
+brew "make"
 cask "1password"
 cask "airbuddy"
 cask "alfred"
@@ -11,7 +20,6 @@ cask "bruno"
 cask "calibre"
 cask "claude"
 cask "claude-code"
-cask "codex-app"
 cask "daisydisk"
 cask "dash"
 cask "dbeaver-community"
@@ -36,7 +44,6 @@ cask "microsoft-auto-update"
 cask "microsoft-teams"
 cask "modern-csv"
 cask "monodraw"
-cask "mos"
 cask "obs"
 cask "obsidian"
 cask "openscad@snapshot"
@@ -51,9 +58,7 @@ cask "serial"
 cask "shimo"
 cask "signal"
 cask "soundsource"
-cask "thaw"
 cask "transmission"
-cask "vanilla"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark-app"
@@ -77,11 +82,10 @@ mas "MindNode Next", id: 6446116532
 mas "MusicBox", id: 1614730313
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
-mas "Parcel", id: 375589283
 mas "Peek", id: 1554235898
 mas "PiPifier", id: 1160374471
-mas "Pixelmator Pro", id: 6746662575
 mas "Pixelmator Pro", id: 1289583905
+mas "Pixelmator Pro", id: 6746662575
 mas "Reeder", id: 1529448980
 mas "Save to Raindrop.io", id: 1549370672
 mas "Shapr3D", id: 1091675654
@@ -90,8 +94,8 @@ mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "The Camelizer", id: 1532579087
 mas "The Unarchiver", id: 425424353
+mas "Usage for Claude", id: 6755173244
 mas "Velja", id: 1607635845
-mas "Windows App", id: 1295203466
 mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
 cargo "cargo-binutils"
