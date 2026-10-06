@@ -78,6 +78,13 @@
               (_final: prev: {
                 _1password-cli-beta = prev.callPackage ./pkgs/_1password-cli-beta { };
                 orbstack_loc = prev.callPackage ./pkgs/orbstack { };
+                # download-cdn.jetbrains.com now 404s on unsigned URLs; download.jetbrains.com redirects to a signed one
+                jetbrains-toolbox = prev.jetbrains-toolbox.overrideAttrs (old: {
+                  src = prev.fetchurl {
+                    url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${old.version}-arm64.dmg";
+                    hash = old.src.outputHash;
+                  };
+                });
               })
             ];
 

@@ -19,8 +19,15 @@
     ../../modules/jetbrains.nix
     ../../modules/shell
     ../../modules/postgresql.nix
+    ../../modules/obsidian.nix
     # ../../modules/ghostty.nix
   ];
+
+  # Copy .app bundles instead of symlinking so Spotlight/Raycast index them
+  targets.darwin = {
+    copyApps.enable = true;
+    linkApps.enable = false;
+  };
 
   programs = {
     orbstack = {

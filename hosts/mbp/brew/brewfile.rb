@@ -13,6 +13,7 @@ cask "airbuddy"
 cask "alfred"
 cask "apache-directory-studio"
 cask "balenaetcher"
+cask "bambu-studio"
 cask "bettermouse"
 cask "bitwarden"
 cask "blender"
@@ -30,6 +31,7 @@ cask "elgato-control-center"
 cask "elgato-stream-deck"
 cask "firefox@beta"
 cask "firefox@developer-edition"
+cask "gitkraken"
 cask "google-drive"
 cask "hammerspoon"
 cask "handbrake-app"
@@ -45,7 +47,6 @@ cask "microsoft-teams"
 cask "modern-csv"
 cask "monodraw"
 cask "obs"
-cask "obsidian"
 cask "openscad@snapshot"
 cask "orcaslicer"
 cask "postman"
@@ -70,7 +71,6 @@ mas "Amphetamine", id: 937984704
 mas "Balatro", id: 6502451661
 mas "Blackmagic Disk Speed Test", id: 425264550
 mas "ControllerForHomeKit", id: 1198176727
-mas "FileBot", id: 905384638
 mas "Flighty", id: 1358823008
 mas "Hand Mirror", id: 1502839586
 mas "Home Assistant", id: 1099568401
@@ -82,6 +82,7 @@ mas "MindNode Next", id: 6446116532
 mas "MusicBox", id: 1614730313
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
+mas "Parcel", id: 375589283
 mas "Peek", id: 1554235898
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
@@ -96,6 +97,7 @@ mas "The Camelizer", id: 1532579087
 mas "The Unarchiver", id: 425424353
 mas "Usage for Claude", id: 6755173244
 mas "Velja", id: 1607635845
+mas "Windows App", id: 1295203466
 mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
 cargo "cargo-binutils"
