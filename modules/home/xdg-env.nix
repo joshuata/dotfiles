@@ -1,8 +1,5 @@
-{
-  config,
-  ...
-}:
-
+# Point tools that default to dotfiles in $HOME at the XDG base directories.
+{ config, ... }:
 {
   home.sessionVariables = {
     LANG = "en_US.UTF-8";

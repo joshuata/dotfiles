@@ -1,12 +1,14 @@
+{ config, ... }:
 {
+  imports = [ ../identity.nix ];
+
   programs = {
     git = {
       enable = true;
       signing.format = "openpgp";
       settings = {
         user = {
-          name = "Josh Asplund";
-          email = "joshasplund@gmail.com";
+          inherit (config.my.identity) name email;
         };
         alias = {
           fpush = "push --force-with-lease";

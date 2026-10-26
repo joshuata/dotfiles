@@ -30,6 +30,7 @@
     rsync
     cargo-generate
     zstd
+    postgresql
   ];
 
 }
