@@ -1,10 +1,14 @@
 {
+  config,
   pkgs,
   ...
 }:
+let
+  user = config.system.primaryUser;
+in
 {
   imports = [
-    ./hammerspoon.nix
+    ./brewfile.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -18,7 +22,7 @@
     settings.experimental-features = "nix-command flakes";
     settings.trusted-users = [
       "root"
-      "joshuata"
+      user
       "@admin"
     ];
     settings.extra-nix-path = "nixpkgs=flake:nixpkgs";
@@ -62,10 +66,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.segger-jlink.acceptLicense = true;
 
-  system.primaryUser = "joshuata";
-  users.users.joshuata = {
-    name = "joshuata";
-    home = "/Users/joshuata";
+  users.users.${user} = {
+    name = user;
+    home = "/Users/${user}";
     shell = pkgs.zsh;
   };
 

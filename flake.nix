@@ -62,16 +62,19 @@
         system = "aarch64-darwin";
         modules = [
           ./darwin
-          ./hosts/mbp/brew
+          ./hosts/mbp
           nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = false;
-              user = "joshuata";
-              autoMigrate = true;
-            };
-          }
+          (
+            { config, ... }:
+            {
+              nix-homebrew = {
+                enable = true;
+                enableRosetta = false;
+                user = config.system.primaryUser;
+                autoMigrate = true;
+              };
+            }
+          )
           home-manager.darwinModules.home-manager
           {
             nixpkgs.overlays = [
@@ -90,7 +93,6 @@
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.joshuata = import ./hosts/mbp/default.nix;
             home-manager.extraSpecialArgs = { inherit onepassword-shell-plugins; };
             home-manager.backupFileExtension = "bkp";
           }

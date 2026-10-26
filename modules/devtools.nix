@@ -8,6 +8,7 @@
     git-credential-manager
     tsx
     gettext
+    github-cli
   ];
 
   programs = {

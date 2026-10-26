@@ -1,39 +1,55 @@
 {
+  config,
   pkgs,
   ...
 }:
 {
-  imports = [
-    ./envvars.nix
-    ./packages.nix
-    ../../modules/common.nix
-    ../../modules/devtools.nix
-    ../../modules/mise.nix
-    ../../modules/vim
-    ../../modules/git
-    ../../modules/orbstack
-    # ../../modules/iterm2.nix
-    # ../../modules/macos.nix
-    ../../modules/nixdev.nix
-    ../../modules/onepass.nix
-    ../../modules/jetbrains.nix
-    ../../modules/shell
-    ../../modules/postgresql.nix
-    ../../modules/obsidian.nix
-    # ../../modules/ghostty.nix
+  system.primaryUser = "joshuata";
+
+  environment.systemPackages = with pkgs; [
+    mas
   ];
 
-  # Copy .app bundles instead of symlinking so Spotlight/Raycast index them
-  targets.darwin = {
-    copyApps.enable = true;
-    linkApps.enable = false;
-  };
+  homebrew = {
+    importBrewfile = ./brewfile.rb;
 
-  programs = {
-    orbstack = {
-      enable = true;
-      package = pkgs.orbstack_loc;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+      # cleanup = "zap";
     };
   };
 
+  home-manager.users.${config.system.primaryUser} = {
+    imports = [
+      ./envvars.nix
+      ./packages.nix
+      ../../modules/common.nix
+      ../../modules/devtools.nix
+      ../../modules/mise.nix
+      ../../modules/vim
+      ../../modules/git
+      ../../modules/orbstack
+      # ../../modules/iterm2.nix
+      ../../modules/nixdev.nix
+      ../../modules/onepass.nix
+      ../../modules/jetbrains.nix
+      ../../modules/shell
+      ../../modules/postgresql.nix
+      ../../modules/obsidian.nix
+    ];
+
+    # Copy .app bundles instead of symlinking so Spotlight/Raycast index them
+    targets.darwin = {
+      copyApps.enable = true;
+      linkApps.enable = false;
+    };
+
+    programs = {
+      orbstack = {
+        enable = true;
+        package = pkgs.orbstack_loc;
+      };
+    };
+  };
 }
