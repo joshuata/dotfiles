@@ -42,7 +42,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   # These bogus files corrupt the .app bundle and prevent it from launching.
   unpackCmd = "7zz x -snld -xr'!*:com.apple.*' $curSrc";
 
-  nativeBuildInputs = [ _7zz installShellFiles ];
+  nativeBuildInputs = [
+    _7zz
+    installShellFiles
+  ];
 
   sourceRoot = ".";
 

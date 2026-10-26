@@ -4,7 +4,7 @@
 
 set -eu -o pipefail
 
-nixfile="$(dirname "$(readlink -f "$0")")/default.nix"
+nixfile="$(dirname "$(readlink -f "$0")")/package.nix"
 
 version=""
 

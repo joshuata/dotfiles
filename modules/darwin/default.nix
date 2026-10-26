@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -8,8 +9,25 @@ let
 in
 {
   imports = [
-    ./brewfile.nix
+    ./homebrew.nix
+    inputs.home-manager.darwinModules.home-manager
   ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "bkp";
+    sharedModules = [
+      {
+        # Copy .app bundles instead of symlinking so Spotlight/Raycast index them
+        targets.darwin = {
+          copyApps.enable = true;
+          linkApps.enable = false;
+        };
+      }
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
     home-manager
@@ -25,7 +43,9 @@ in
       user
       "@admin"
     ];
-    settings.extra-nix-path = "nixpkgs=flake:nixpkgs";
+    # Flakes only: drops /nix/var/nix/profiles/per-user/root/channels from NIX_PATH.
+    # nixpkgs=flake:nixpkgs is still added by nixpkgs.flake.setNixPath.
+    channel.enable = false;
     settings.extra-substituters = [
       "https://cache.lix.systems"
       "https://nix-community.cachix.org"
@@ -50,7 +70,6 @@ in
 
   nix.package = pkgs.lixPackageSets.latest.lix;
 
-
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
@@ -61,8 +80,6 @@ in
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.segger-jlink.acceptLicense = true;
 

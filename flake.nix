@@ -12,116 +12,38 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    onepassword-shell-plugins = {
-      url = "github:1Password/shell-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      inherit (nixpkgs) lib;
+      inherit (import ./lib { inherit inputs; }) mkDarwin mkHome;
+    in
     {
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      nix-homebrew,
-      onepassword-shell-plugins,
-      ...
-    }:
-    {
-      # Empty default shell on every platform; override per-platform below.
-      devShells =
-        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: {
-          default = nixpkgs.legacyPackages.${system}.mkShellNoCC { };
-        })
-        // {
-          aarch64-darwin.default =
-            let
-              pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            in
-            pkgs.mkShellNoCC {
-              packages = [
-                (pkgs.writeShellApplication {
-                  name = "mkbrewfile";
-                  runtimeEnv = {
-                    HOMEBREW_NO_AUTO_UPDATE = "1";
-                    HOMEBREW_BUNDLE_NO_DESCRIBE = "1";
-                    HOMEBREW_BUNDLE_DUMP_NO_VSCODE = "1";
-                    HOMEBREW_BUNDLE_DUMP_NO_UV = "1";
-                  };
-                  text = ''
-                    brew bundle dump -f --file "$(git rev-parse --show-toplevel)/hosts/mbp/brew/brewfile.rb"
-                  '';
-                })
-              ];
-            };
+      # Keyed by hostname, which must match `scutil --get LocalHostName`.
+      # Apply with: $ sudo darwin-rebuild switch --flake .
+      darwinConfigurations = lib.mapAttrs (hostname: args: mkDarwin (args // { inherit hostname; })) {
+        "Joshs-MacBook-Pro" = {
+          username = "joshuata";
+          modules = [ ./hosts/mbp ];
         };
-
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Joshs-MacBook-Pro
-      darwinConfigurations."Joshs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./darwin
-          ./hosts/mbp
-          nix-homebrew.darwinModules.nix-homebrew
-          (
-            { config, ... }:
-            {
-              nix-homebrew = {
-                enable = true;
-                enableRosetta = false;
-                user = config.system.primaryUser;
-                autoMigrate = true;
-              };
-            }
-          )
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs.overlays = [
-              (_final: prev: {
-                _1password-cli-beta = prev.callPackage ./pkgs/_1password-cli-beta { };
-                orbstack_loc = prev.callPackage ./pkgs/orbstack { };
-                # download-cdn.jetbrains.com now 404s on unsigned URLs; download.jetbrains.com redirects to a signed one
-                jetbrains-toolbox = prev.jetbrains-toolbox.overrideAttrs (old: {
-                  src = prev.fetchurl {
-                    url = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${old.version}-arm64.dmg";
-                    hash = old.src.outputHash;
-                  };
-                });
-              })
-            ];
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit onepassword-shell-plugins; };
-            home-manager.backupFileExtension = "bkp";
-          }
-        ];
-        specialArgs = { inherit onepassword-shell-plugins; };
       };
-      homeConfigurations."joshuata" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "x86_64-linux"; };
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
+      homeConfigurations."joshuata" = mkHome {
+        username = "joshuata";
+        homeDirectory = "/mnt/ssd/home/joshuata";
+        system = "x86_64-linux";
         modules = [ ./hosts/adolin ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
       # Per-system home configurations. `home-manager switch --flake .#vscode`
       # resolves via legacyPackages.<currentSystem>, so the same command works
       # on both x86_64-linux and aarch64-linux.
-      legacyPackages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system: {
-        homeConfigurations."vscode" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
+      legacyPackages = lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (system: {
+        homeConfigurations."vscode" = mkHome {
+          username = "vscode";
+          inherit system;
           modules = [ ./hosts/devcontainer ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
         };
       });
     };

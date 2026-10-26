@@ -1,55 +1,25 @@
+{ config, ... }:
 {
-  config,
-  pkgs,
-  ...
-}:
-{
-  system.primaryUser = "joshuata";
+  homebrew.importBrewfile = ./brewfile.rb;
 
-  environment.systemPackages = with pkgs; [
-    mas
-  ];
+  home-manager.users.${config.system.primaryUser} =
+    { config, ... }:
+    {
+      imports = [
+        ./envvars.nix
+        ./packages.nix
+        ../../profiles/dev.nix
+        ../../packages/orbstack/home-manager.nix
+        # ../../modules/home/iterm2.nix
+        ../../modules/home/onepass.nix
+        ../../modules/home/jetbrains.nix
+        ../../modules/home/postgresql.nix
+        ../../modules/home/obsidian.nix
+      ];
 
-  homebrew = {
-    importBrewfile = ./brewfile.rb;
-
-    onActivation = {
-      autoUpdate = true;
-      upgrade = true;
-      # cleanup = "zap";
-    };
-  };
-
-  home-manager.users.${config.system.primaryUser} = {
-    imports = [
-      ./envvars.nix
-      ./packages.nix
-      ../../modules/common.nix
-      ../../modules/devtools.nix
-      ../../modules/mise.nix
-      ../../modules/vim
-      ../../modules/git
-      ../../modules/orbstack
-      # ../../modules/iterm2.nix
-      ../../modules/nixdev.nix
-      ../../modules/onepass.nix
-      ../../modules/jetbrains.nix
-      ../../modules/shell
-      ../../modules/postgresql.nix
-      ../../modules/obsidian.nix
-    ];
-
-    # Copy .app bundles instead of symlinking so Spotlight/Raycast index them
-    targets.darwin = {
-      copyApps.enable = true;
-      linkApps.enable = false;
-    };
-
-    programs = {
-      orbstack = {
+      programs.orbstack = {
         enable = true;
-        package = pkgs.orbstack_loc;
+        dockerConfigDir = "${config.xdg.configHome}/docker";
       };
     };
-  };
 }

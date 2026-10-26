@@ -1,23 +1,8 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  onepassword-shell-plugins,
-  ...
-}:
-{
+  home.packages = [ pkgs._1password-cli ];
 
-  imports = [
-    onepassword-shell-plugins.hmModules.default
-  ];
-
-  programs = {
-    _1password-shell-plugins = {
-      enable = true;
-      package = pkgs._1password-cli-beta;
-
-      # plugins = with pkgs; [];
-    };
-  };
-
+  # Sign commits with the SSH key held in the 1Password app.
   programs = {
     git = {
       settings = {

@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   cfg = config.homebrew;
 
@@ -14,6 +20,10 @@ let
     ];
 in
 {
+  imports = [
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+  ];
+
   options.homebrew.importBrewfile = lib.mkOption {
     type = lib.types.nullOr lib.types.path;
     default = null;
@@ -21,11 +31,30 @@ in
   };
 
   config = lib.mkIf (cfg.importBrewfile != null) {
+    environment.systemPackages = with pkgs; [
+      mas
+      (callPackage ../../packages/mkbrewfile {
+        brewfile = lib.removePrefix "${inputs.self}/" (toString cfg.importBrewfile);
+      })
+    ];
+
+    nix-homebrew = {
+      enable = true;
+      user = config.system.primaryUser;
+      autoMigrate = true;
+    };
+
     homebrew = {
       enable = true;
       taps = parseBrewfile "tap";
       casks = parseBrewfile "cask";
       brews = parseBrewfile "brew";
+
+      onActivation = {
+        autoUpdate = true;
+        upgrade = true;
+        # cleanup = "zap";
+      };
     };
   };
 }
