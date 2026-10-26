@@ -9,7 +9,6 @@
   home.packages = with pkgs; [
     cmake
     cachix
-    nodejs
     ddrescue
     jdk
     python3
@@ -22,15 +21,11 @@
     ripgrep
     step-cli
     esptool
-    rustup
     ansi2html
     uv
     nss.tools
-    pnpm
     rsync
-    cargo-generate
     zstd
-    postgresql
   ];
 
 }
