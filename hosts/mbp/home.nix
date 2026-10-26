@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   imports = [
     ./packages.nix
@@ -7,15 +6,10 @@
     ../../modules/home/node.nix
     ../../modules/home/rust.nix
     ../../modules/home/postgresql.nix
-    ../../packages/orbstack/home-manager.nix
+    ../../modules/home/docker.nix
     # ../../modules/home/iterm2.nix
     ../../modules/home/onepass.nix
     ../../modules/home/jetbrains.nix
     ../../modules/home/obsidian.nix
   ];
-
-  programs.orbstack = {
-    enable = true;
-    dockerConfigDir = "${config.xdg.configHome}/docker";
-  };
 }
