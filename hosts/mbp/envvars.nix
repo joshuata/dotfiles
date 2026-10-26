@@ -13,7 +13,6 @@
 
     ANSIBLE_HOME = "${config.xdg.configHome}/ansible";
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
-    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     VAGRANT_HOME = "${config.xdg.dataHome}/vagrant";
     RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
     TS_NODE_HISTORY = "${config.xdg.stateHome}/ts_node_repl_history";
