@@ -18,6 +18,17 @@ let
       (lib.filter (m: m != null))
       (map builtins.head)
     ];
+
+  # Taps keep their `trusted: true` flag, which nix-darwin re-emits in its Brewfile.
+  parseTaps = lib.pipe (builtins.readFile cfg.importBrewfile) [
+    (lib.splitString "\n")
+    (map (builtins.match "[[:space:]]*tap[[:space:]]+\"([^\"]+)\"(.*)"))
+    (lib.filter (m: m != null))
+    (map (m: {
+      name = builtins.elemAt m 0;
+      trusted = builtins.match ".*trusted:[[:space:]]*true.*" (builtins.elemAt m 1) != null;
+    }))
+  ];
 in
 {
   imports = [
@@ -46,7 +57,7 @@ in
 
     homebrew = {
       enable = true;
-      taps = parseBrewfile "tap";
+      taps = parseTaps;
       casks = parseBrewfile "cask";
       brews = parseBrewfile "brew";
 
