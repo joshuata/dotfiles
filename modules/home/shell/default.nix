@@ -25,15 +25,6 @@
       autosuggestion.enable = true;
       dotDir = "${config.xdg.configHome}/zsh";
       completionInit = "autoload -U compinit && compinit -d \"${config.xdg.cacheHome}/zsh/zcompdump\"";
-      plugins = [
-        {
-          name = "iterm2-shell-integration";
-          src = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/gnachman/iTerm2-shell-integration/9f4ee84236dca4cd27ad9b208be4effd0bf7e8e7/shell_integration/zsh";
-            sha256 = "eF8Y4gPCnI0Gqc03TQgxdIkJ9cYUMXUoeBd2RoH4QKc=";
-          };
-        }
-      ];
       history = {
         append = true;
         path = "${config.xdg.dataHome}/zsh/history";

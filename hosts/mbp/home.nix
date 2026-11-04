@@ -7,7 +7,7 @@
     ../../modules/home/rust.nix
     ../../modules/home/postgresql.nix
     ../../modules/home/docker.nix
-    # ../../modules/home/iterm2.nix
+    ../../modules/home/iterm2
     ../../modules/home/onepass.nix
     ../../modules/home/jetbrains.nix
     ../../modules/home/obsidian.nix
