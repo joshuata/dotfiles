@@ -54,6 +54,11 @@
           modules = [ ./hosts/mbp ];
           home = [ ./hosts/mbp/home.nix ];
         };
+        "asplund3-loaner" = {
+          username = "asplund3";
+          modules = [ ./hosts/loaner ];
+          home = [ ./hosts/loaner/home.nix ];
+        };
       };
 
       homeConfigurations."joshuata" = mkHome {
