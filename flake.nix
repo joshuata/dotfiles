@@ -12,11 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Catppuccin colors as JSON, for modules/home/iterm2/catppuccin.nix.
-    catppuccin-palette = {
-      url = "github:catppuccin/palette";
-      flake = false;
-    };
   };
 
   outputs =

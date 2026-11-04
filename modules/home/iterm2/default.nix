@@ -5,7 +5,6 @@
 {
   imports = [
     ../../../packages/iterm2/module.nix
-    ./catppuccin.nix
   ];
 
   programs.iterm2 = {
