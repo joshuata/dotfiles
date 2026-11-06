@@ -6,6 +6,7 @@
     git = {
       enable = true;
       signing.format = "openpgp";
+      lfs.enable = true;
       settings = {
         user = {
           inherit (config.my.identity) name email;
