@@ -1,4 +1,3 @@
-tap "1password/tap", trusted: true
 brew "ccache"
 brew "coreutils"
 brew "openssl@3"

@@ -54,10 +54,10 @@
           modules = [ ./hosts/mbp ];
           home = [ ./hosts/mbp/home.nix ];
         };
-        "asplund3-loaner" = {
+        "asplund3-mbp" = {
           username = "asplund3";
-          modules = [ ./hosts/loaner ];
-          home = [ ./hosts/loaner/home.nix ];
+          modules = [ ./hosts/asplund3-mbp ];
+          home = [ ./hosts/asplund3-mbp/home.nix ];
         };
       };
 
