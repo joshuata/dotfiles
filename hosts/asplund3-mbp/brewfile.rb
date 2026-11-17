@@ -1,6 +1,6 @@
 brew "coreutils"
-brew "tailscale"
 brew "openssl@3"
+brew "tailscale"
 cask "1password"
 cask "apache-directory-studio"
 cask "autodesk-fusion"
@@ -23,15 +23,19 @@ cask "google-drive"
 cask "home-assistant"
 cask "iterm2"
 cask "itermbrowserplugin"
+cask "kicad"
 cask "little-snitch"
+cask "lm-studio"
 cask "micro-snitch"
 cask "monodraw"
+cask "mutedeck"
 cask "quicklook-video"
 cask "raycast"
 cask "rectangle-pro"
 cask "serial"
 cask "shimo"
 cask "soundsource"
+cask "tailscale-app"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark-app"
@@ -39,6 +43,7 @@ mas "1Password for Safari", id: 1569813296
 mas "Amphetamine", id: 937984704
 mas "MindNode", id: 6446116532
 mas "MusicBox", id: 1614730313
+mas "MuteDeck for Safari", id: 6757082983
 mas "Peek", id: 1554235898
 mas "The Unarchiver", id: 425424353
 mas "Usage for Claude", id: 6755173244
